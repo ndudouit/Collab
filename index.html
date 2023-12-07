@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grille Bootstrap Responsive</title>
+
+	<!-- Lien vers Bootstrap CSS CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<!-- Chemin vers Feuille de style -->
+	<link rel="stylesheet" href="./replace_style.css">
+</head>
+
+<body>
+
+	<div class="container-fluid">
+		<div id='container' class="row">
+			<!-- Première ligne -->
+			<div id='model-case' class="col-md-4 col-sm-12">replace_name</div>
+		</div>
+	</div>
+
+	<!-- Lien vers jQuery (requis pour Bootstrap) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+	<!-- Lien vers Bootstrap JS CDN -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<script>
+		const etudiants = [
+			"AUDOIRE Marin",
+			"AUGEREAU Eliott",
+			"BAHUAUD Alexis",
+			"BINET Morgane",
+			"BROSSE Pierre",
+			"CHARBONNEAU Tom",
+			"CROUAN Thomas",
+			"DERAME SULLIVAN",
+			"DOUCET CHARDRON Maïwenn",
+			"DUDOUIT Noé",
+			"DUVAL-ARNOULD Titouan",
+			"EL OUARDANI Imad-eddine",
+			"FREVAL Elouan",
+			"GLORIA Romain",
+			"GRIMAUD Thibault",
+			"GUERINEAU Nicolas",
+			"GUILLERMIC BRIEUC",
+			"HASANLI Alisa",
+			"JOUNEAU-BONNET Amaury",
+			"LE RIGUER--BIGEARD Karl",
+			"LE ROUX Thomas",
+			"MOREL Paul",
+			"OLIVIER YANN",
+			"PEIXOTO Anthony",
+			"PORTOLLEAU Anaïs",
+			"RIALLAND Stefen",
+			"TALPOT DAMIEN",
+			"THERY ROMAIN",
+			"TRIBALEAU Titouan",
+			"WORMS Loric"
+		];
+
+		function randomColor() {
+			const letters = '0123456789ABCDEF';
+			let color = '#';
+			for (let i = 0; i < 6; i++) {
+				color += letters[Math.floor(Math.random() * 16)];
+			}
+			return color;
+		}
+		// Récupère le modèle
+		const divExistante = document.getElementById('model-case'); // Remplacer 'model-case' par l'ID de votre div existante
+		// Crée une div pour chaque étudiant et l'ajoute au DOM avec une couleur de fond aléatoire
+		etudiants.forEach((etudiant, index) => {
+			// Crée une copie de la div existante
+			const nouvelleDiv = divExistante.cloneNode(true);
+
+			// Modifie le contenu de la nouvelle div avec le nom de l'étudiant
+			nouvelleDiv.textContent = etudiant;
+
+			// Si c'est mon nom
+			if(etudiant == "NOM Prénom"){
+				// Je modifie ma case. Exemple:
+				nouvelleDiv.classList.add('blue');
+			}
+			else{
+				// Génère une couleur de fond aléatoire
+				const randomBackgroundColor = randomColor();
+
+				// Applique la couleur de fond à la nouvelle div
+				nouvelleDiv.style.backgroundColor = randomBackgroundColor;
+			}
+
+			// Ajoute la nouvelle div au DOM (par exemple, à un conteneur)
+			const conteneur = document.getElementById('container'); // Remplacer 'container' par l'ID du conteneur où vous souhaitez ajouter les divs
+			conteneur.appendChild(nouvelleDiv);
+		});
+		
+		// Supprime la div modèle
+		divExistante.remove();
+	</script>
+</body>
+
+</html>
